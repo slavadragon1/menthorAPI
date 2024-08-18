@@ -1,4 +1,6 @@
 from fastapi import APIRouter
+from users.schema import AllUsers
+from crud import get_all_users
 
 
 router = APIRouter(prefix='/users')
@@ -6,7 +8,8 @@ router = APIRouter(prefix='/users')
 
 @router.get("/")
 async def all_users():
-    return {"message": "all users"}
+    users = await get_all_users()
+    return AllUsers(users=users)
 
 
 @router.get("/{user_id}")
