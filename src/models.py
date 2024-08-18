@@ -17,6 +17,9 @@ class User(Base):
 
     tasks: Mapped[List["Task"]] = relationship(back_populates="user")
 
+    def __repr__(self) -> str:
+        return f"id: {self.id} name: {self.name}"
+
 
 class Task(Base):
     __tablename__ = "task"

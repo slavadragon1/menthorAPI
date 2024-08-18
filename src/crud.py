@@ -12,5 +12,11 @@ async def get_all_users():
         return session.execute(exp).all()
 
 
+async def get_user_by_id(id: int):
+    with Session(engine) as session:
+        exp = select(User).where(User.id == id)
+        return session.execute(exp).first()
+
+
 if __name__ == "__main__":
     print(asyncio.run(get_all_users()))
