@@ -13,11 +13,11 @@ async def all_users() -> AllUsers:
 
 
 @router.get("/{user_id}")
-async def user(user_id: int) -> User:
-    user = await get_user_by_id(user_id)
-    print(bool(user))
-    if user:
-        return User(user=user)
+async def user(user_id: int) -> User | UserNotFoundError:
+    user1 = await get_user_by_id(user_id)
+    print(user1)
+    if user1:
+        return User(user=user1)
     return UserNotFoundError
 
 
